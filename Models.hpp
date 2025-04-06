@@ -1,8 +1,10 @@
 #ifndef MODELS
 #define MODELS
+#include "Math.hpp"
+#include "Loss.hpp"
 #include <tuple>
 #include <vector>
-#include "Math.hpp"
+
 
 using namespace std;
 
@@ -29,24 +31,21 @@ auto linearRegression(vector<vector<float>> x, vector<float> y, float alpha, int
         }
         
         // compute error
-        float error = mse(yp, y);
-        cout << yp << endl;
+        float error = loss(yp, y, mse);
         cout << "Epoch " << (i+1) << " error: " << error << endl; 
         
         // compute gradient
         vector<float> grad_w(n, 0.0);
         float grad_b = 0.0;
 
+        // grad_w = 2X'(Xw - y) -> we are dropping 2 as scaling factor
         for (int i = 0; i < m; i++) {
             float diff = yp[i] - y[i];
             for (int j = 0; j < n; j++) {
-                grad_w[j] += diff * x[i][j];
+                grad_w[j] = grad_w[j] + diff * x[i][j] / m;
             }
+            // grad_b = 2*1'(Xw - y)
             grad_b += diff;
-        }
-
-        for (int j = 0; j < n; j++) {
-            grad_w[j] /= m;
         }
         grad_b /= m;
 
