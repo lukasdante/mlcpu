@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <tuple>
 
 using namespace std;
 
@@ -26,7 +27,12 @@ int main() {
     float alpha = 0.1;
     int epochs = 1000;
 
-    auto [w, b] = linearRegression(x, y, alpha, epochs);
+    LinearRegression model = LinearRegression<float>(x, y, epochs, alpha);
+    
+    vector<float> w;
+    float b;
+    
+    tie(w, b) = model.train();
 
     cout << "\nFinal weight: " << w[0] << endl;
     cout << "Final bias: " << b << endl;
