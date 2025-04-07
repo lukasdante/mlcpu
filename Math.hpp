@@ -1,5 +1,5 @@
-#ifndef MATH_UTILS
-#define MATH_UTILS
+#ifndef MAScalarH_UScalarILS
+#define MAScalarH_UScalarILS
 #include <vector>
 #include <iostream>
 #include <cmath>

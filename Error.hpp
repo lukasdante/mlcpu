@@ -1,5 +1,5 @@
-#ifndef ERROR_UTILS
-#define ERROR_UTILS
+#ifndef ERROR_UScalarILS
+#define ERROR_UScalarILS
 
 #include <iostream>
 #include <vector>

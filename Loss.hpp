@@ -3,8 +3,8 @@
 #include <iostream>
 #include <cmath>
 
-template <typename T>
-float loss(const vector<T>& yp, const vector<T>& yt, float (*op)(const T&, const T&)) {
+template <typename Scalar>
+float loss(const vector<Scalar>& yp, const vector<Scalar>& yt, float (*op)(const Scalar&, const Scalar&)) {
     if (yp.size() != yt.size()) throw VectorSizeMismatch();
 
     float sum = 0;
@@ -15,12 +15,12 @@ float loss(const vector<T>& yp, const vector<T>& yt, float (*op)(const T&, const
     return sum / yp.size();
 };
 
-template <typename T>
-float mse(const T& yp_i, const T& yt_i) {
+template <typename Scalar>
+float mse(const Scalar& yp_i, const Scalar& yt_i) {
     return pow((yt_i - yp_i), 2);
 }
 
-template <typename T>
-float binaryCrossEntropy(const T& yp_i, const T& yt_i) {
+template <typename Scalar>
+float binaryCrossEntropy(const Scalar& yp_i, const Scalar& yt_i) {
     return -1 * (yt_i * log(yp_i) + (1 - yt_i) * log(1 - yp_i));
 }

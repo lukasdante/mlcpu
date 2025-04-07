@@ -1,5 +1,5 @@
-#ifndef VECTOR_UTILS
-#define VECTOR_UTILS
+#ifndef VECScalarOR_UScalarILS
+#define VECScalarOR_UScalarILS
 #include <vector>
 
 using namespace std;
@@ -11,19 +11,19 @@ ostream& operator<<(ostream& os, const vector<float>& v) {
     return os;
 }
 
-template <typename T>
-vector<T> operator<<(ostream& os, const vector<T>& v) {
+template <typename Scalar>
+vector<Scalar> operator<<(ostream& os, const vector<Scalar>& v) {
     for (int i = 0; i < v.size(); i++) {
         os << v[i] << " ";
     }
     return os;
 }
 
-template <typename T>
-vector<T> operator+(const vector<T> a, const vector<T>& b) {
+template <typename Scalar>
+vector<Scalar> operator+(const vector<Scalar> a, const vector<Scalar>& b) {
     if (a.size() != b.size()) throw VectorSizeMismatch();
 
-    vector<T> result(a.size());
+    vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
         result.push_back(a[i] + b[i]);
     }
@@ -31,11 +31,11 @@ vector<T> operator+(const vector<T> a, const vector<T>& b) {
     return result;
 }
 
-template <typename T>
-vector<T> operator-(const vector<T> a, const vector<T>& b) {
+template <typename Scalar>
+vector<Scalar> operator-(const vector<Scalar> a, const vector<Scalar>& b) {
     if (a.size() != b.size()) throw VectorSizeMismatch();
 
-    vector<T> result(a.size());
+    vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
         result.push_back(a[i] - b[i]);
     }
@@ -43,11 +43,11 @@ vector<T> operator-(const vector<T> a, const vector<T>& b) {
     return result;
 }
 
-template <typename T>
-vector<T> operator*(const vector<T> a, const vector<T>& b) {
+template <typename Scalar>
+vector<Scalar> operator*(const vector<Scalar> a, const vector<Scalar>& b) {
     if (a.size() != b.size()) throw VectorSizeMismatch();
 
-    vector<T> result(a.size());
+    vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
         result.push_back(a[i] * b[i]);
     }
@@ -55,11 +55,11 @@ vector<T> operator*(const vector<T> a, const vector<T>& b) {
     return result;
 }
 
-template <typename T>
-vector<T> operator/(const vector<T> a, const vector<T>& b) {
+template <typename Scalar>
+vector<Scalar> operator/(const vector<Scalar> a, const vector<Scalar>& b) {
     if (a.size() != b.size()) throw VectorSizeMismatch();
 
-    vector<T> result(a.size());
+    vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
         if (b[i] == 0) throw runtime_error("Divide by zero error.");
         result.push_back(a[i] / b[i]);
@@ -68,8 +68,8 @@ vector<T> operator/(const vector<T> a, const vector<T>& b) {
     return result;
 }
 
-template <typename T>
-float dotProduct(vector<T>& va, vector<T>& vb) {
+template <typename Scalar>
+float dotProduct(vector<Scalar>& va, vector<Scalar>& vb) {
     if (va.size() != vb.size()) throw VectorSizeMismatch();
 
     float product = 0;
@@ -88,11 +88,11 @@ float distance(vector<float>& va) {
     return sqrt(sum);
 }
 
-template <typename T>
-vector<T> vectorProjection(vector<T>& va, vector<T>& vb) {
+template <typename Scalar>
+vector<Scalar> vectorProjection(vector<Scalar>& va, vector<Scalar>& vb) {
     if (va.size() != vb.size()) throw VectorSizeMismatch();
 
-    vector<T> projection;
+    vector<Scalar> projection;
 
     float dp = dotProduct(va, vb);
     float di = pow(distance(vb), 2);
