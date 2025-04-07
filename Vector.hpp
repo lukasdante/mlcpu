@@ -25,7 +25,7 @@ vector<Scalar> operator+(const vector<Scalar> a, const vector<Scalar>& b) {
 
     vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
-        result.push_back(a[i] + b[i]);
+        result[i] = a[i] + b[i];
     }
 
     return result;
@@ -37,7 +37,7 @@ vector<Scalar> operator-(const vector<Scalar> a, const vector<Scalar>& b) {
 
     vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
-        result.push_back(a[i] - b[i]);
+        result[i] = a[i] - b[i];
     }
 
     return result;
@@ -49,7 +49,7 @@ vector<Scalar> operator*(const vector<Scalar> a, const vector<Scalar>& b) {
 
     vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
-        result.push_back(a[i] * b[i]);
+        result[i] = a[i] * b[i];
     }
 
     return result;
@@ -62,7 +62,7 @@ vector<Scalar> operator/(const vector<Scalar> a, const vector<Scalar>& b) {
     vector<Scalar> result(a.size());
     for (int i = 0; i < a.size(); i++) {
         if (b[i] == 0) throw runtime_error("Divide by zero error.");
-        result.push_back(a[i] / b[i]);
+        result[i] = a[i] / b[i];
     }
 
     return result;
@@ -92,14 +92,14 @@ template <typename Scalar>
 vector<Scalar> vectorProjection(vector<Scalar>& va, vector<Scalar>& vb) {
     if (va.size() != vb.size()) throw VectorSizeMismatch();
 
-    vector<Scalar> projection;
+    vector<Scalar> projection(va.size());
 
     float dp = dotProduct(va, vb);
     float di = pow(distance(vb), 2);
     float pj = dp / di;
 
     for (int i = 0; i < va.size(); i++) {
-        projection.push_back(pj * vb[i]);
+        projection[i] = pj * vb[i];
     }
 
     return projection;

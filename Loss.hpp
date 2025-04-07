@@ -16,7 +16,7 @@ float loss(const vector<Scalar>& yp, const vector<Scalar>& yt, float (*op)(const
 };
 
 template <typename Scalar>
-float mse(const Scalar& yp_i, const Scalar& yt_i) {
+float meanSquaredError(const Scalar& yp_i, const Scalar& yt_i) {
     return pow((yt_i - yp_i), 2);
 }
 
